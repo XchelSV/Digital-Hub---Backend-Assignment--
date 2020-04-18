@@ -13,5 +13,14 @@ router.post('/',
     ],
     transactionController.createTransaction
 );
+router.get('/:_account_id',
+    transactionController.getAccountTransactions
+);
+router.get('/received/:_account_id',
+    transactionController.getReceivedAccountTransactions
+);
+router.get('/sent/:_account_id',
+    transactionController.getSentAccountTransactions
+);
 
 module.exports = router;

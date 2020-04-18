@@ -45,3 +45,42 @@ exports.createTransaction = (req,res) => {
     }
 
 };
+
+exports.getAccountTransactions = (req,res) => {
+
+    try{
+        const { _account_id } = req.params;
+        const current_transactions = transactions.transactions.filter( transaction => (transaction.fromAccount.toString() === _account_id || transaction.toAccount.toString() === _account_id)  );
+        res.status(200).json({ transactions: current_transactions });
+    }catch(error){
+        console.log(error);
+        res.status(400).json({ errors: {msg: ' Something was wrong '} });
+    }
+
+};
+
+exports.getReceivedAccountTransactions = (req,res) => {
+    
+    try{
+        const { _account_id } = req.params;
+        const current_transactions = transactions.transactions.filter( transaction => transaction.toAccount.toString() === _account_id );
+        res.status(200).json({ transactions: current_transactions });
+    }catch(error){
+        console.log(error);
+        res.status(400).json({ errors: {msg: ' Something was wrong '} });
+    }
+
+};
+
+exports.getSentAccountTransactions = (req,res) => {
+    
+    try{
+        const { _account_id } = req.params;
+        const current_transactions = transactions.transactions.filter( transaction => transaction.fromAccount.toString() === _account_id );
+        res.status(200).json({ transactions: current_transactions });
+    }catch(error){
+        console.log(error);
+        res.status(400).json({ errors: {msg: ' Something was wrong '} });
+    }
+
+};
