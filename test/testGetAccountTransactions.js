@@ -1,12 +1,12 @@
 const request = require('supertest');
 const express = require('express');
 const app = express();
-app.use('/api/transactions', require('../routes/transactions'));
+app.use('/transactions', require('../routes/transactions'));
 
-describe('GET /api/transactions/_account_id', function() {
+describe('GET /transactions/_account_id', function() {
     it('As a user I should be able to get all transactions for a givenaccount using a GET method - Account id as fromAccount ', function(done) {
         request(app)
-            .get('/api/transactions/123456789')
+            .get('/transactions/123456789')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect({
@@ -39,7 +39,7 @@ describe('GET /api/transactions/_account_id', function() {
     });
     it('As a user I should be able to get all transactions for a givenaccount using a GET method - Account id as toAccount ', function(done) {
         request(app)
-            .get('/api/transactions/987654321')
+            .get('/transactions/987654321')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect({
@@ -72,7 +72,7 @@ describe('GET /api/transactions/_account_id', function() {
     });
     it('As a user I should be able to get all transactions for a givenaccount using a GET method - Account id without matches', function(done) {
         request(app)
-            .get('/api/transactions/343434345')
+            .get('/transactions/343434345')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect({

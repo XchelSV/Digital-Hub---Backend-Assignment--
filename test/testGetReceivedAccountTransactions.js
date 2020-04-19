@@ -1,12 +1,12 @@
 const request = require('supertest');
 const express = require('express');
 const app = express();
-app.use('/api/transactions', require('../routes/transactions'));
+app.use('/transactions', require('../routes/transactions'));
 
-describe('GET /api/transactions/received/_account_id', function() {
+describe('GET /transactions/received/_account_id', function() {
     it('As a user I should be able to get all received transactions from a givenaccount using a GET method ', function(done) {
         request(app)
-            .get('/api/transactions/received/987654321')
+            .get('/transactions/received/987654321')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect({
@@ -39,7 +39,7 @@ describe('GET /api/transactions/received/_account_id', function() {
     });
     it('As a user I should be able to get all received transactions from a givenaccount using a GET method - Account Id no matches ', function(done) {
         request(app)
-            .get('/api/transactions/received/123456789')
+            .get('/transactions/received/123456789')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect({
