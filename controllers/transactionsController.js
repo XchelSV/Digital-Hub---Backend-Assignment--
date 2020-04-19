@@ -84,3 +84,16 @@ exports.getSentAccountTransactions = (req,res) => {
     }
 
 };
+
+exports.getAccountBalance = (req,res) => {
+    
+    try{
+        const { _account_id } = req.params;
+        const [current_account] = accounts.accounts.filter( account => account.account.toString() === _account_id );
+        res.status(200).json({ balance: current_account });
+    }catch(error){
+        console.log(error);
+        res.status(400).json({ errors: {msg: ' Something was wrong '} });
+    }
+
+};

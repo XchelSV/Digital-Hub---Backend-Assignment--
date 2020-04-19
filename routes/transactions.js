@@ -22,5 +22,8 @@ router.get('/received/:_account_id',
 router.get('/sent/:_account_id',
     transactionController.getSentAccountTransactions
 );
+router.get('/account/balance/:_account_id',
+    transactionController.getAccountBalance
+);
 
 module.exports = router;
